@@ -33,6 +33,20 @@ GOOGLE_API_KEY          = os.getenv("GOOGLE_API_KEY", "")
 GEMINI_MODEL            = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
 GEMINI_EMBEDDING_MODEL  = os.getenv("GEMINI_EMBEDDING_MODEL", "models/embedding-001")
 
+# Key phụ (tuỳ chọn) dùng riêng cho LLM đánh giá của RAGAS ở Bước 3.
+# Free tier Gemini giới hạn ~1000 request/ngày cho mỗi project, mà Bước 3 cần
+# ~900 lần gọi LLM. Tách judge sang key thứ 2 để không cạn quota giữa chừng.
+GOOGLE_API_KEY_EVAL     = os.getenv("GOOGLE_API_KEY_EVAL", "") or GOOGLE_API_KEY
+
+# Key dùng RIÊNG cho embeddings (tuỳ chọn). Quota embeddings của Gemini tách
+# khỏi quota LLM và chỉ có 1000 request/ngày, nên khi key chính cạn embeddings
+# ta vẫn chạy tiếp được bằng cách trỏ embeddings sang key khác.
+EMBEDDING_API_KEY       = os.getenv("EMBEDDING_API_KEY", "")
+
+# ── Rate limiting (free tier) ─────────────────────────────────────────────
+LLM_REQUESTS_PER_MINUTE = float(os.getenv("LLM_REQUESTS_PER_MINUTE", "12"))
+EMB_REQUESTS_PER_MINUTE = int(os.getenv("EMB_REQUESTS_PER_MINUTE", "80"))
+
 # ── Anthropic ─────────────────────────────────────────────────────────────
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL   = os.getenv("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")

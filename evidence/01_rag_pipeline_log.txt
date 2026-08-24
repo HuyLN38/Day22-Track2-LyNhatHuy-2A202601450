@@ -1,0 +1,190 @@
+============================================================
+  Bước 1: LangSmith RAG Pipeline
+============================================================
+✅ Config OK  |  Provider: GEMINI  |  Project: day22-lab
+📚 Đã chia thành 107 chunks
+🔨 Đang tạo FAISS index từ 107 chunks ...
+    ⏳ Rate limit — chờ 5s rồi thử lại (lần 1/6)
+    ⏳ Rate limit — chờ 10s rồi thử lại (lần 2/6)
+✅ FAISS vectorstore đã sẵn sàng.
+I0825 05:29:36.709431 6163953 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(7, generation: 1)
+I0825 05:29:36.715749 6163983 ev_poll_posix.cc:593] FD from fork parent still in poll list: fd(7, generation: 1)
+[01/50] Q: What are the three main types of machine learning?
+       A: Based on the provided context, the three main types of machine learning are:
+
+1. Supervised learning
+
+[02/50] Q: What is overfitting in machine learning?
+       A: Based on the provided context, overfitting occurs when a model learns the training data too well—inc
+
+[03/50] Q: Explain the bias-variance tradeoff.
+       A: Based on the provided context, the bias-variance tradeoff is a fundamental concept in machine learni
+
+[04/50] Q: How does regularization prevent overfitting?
+       A: Based on the provided context, regularization prevents overfitting by discouraging overly complex mo
+
+[05/50] Q: What is cross-validation?
+       A: Based on the provided context, cross-validation is a model evaluation technique that provides a more
+
+[06/50] Q: What is backpropagation?
+       A: Based on the provided context, backpropagation is the core algorithm for training neural networks. I
+
+[07/50] Q: What are Convolutional Neural Networks primarily used for?
+       A: Based on the provided context, Convolutional Neural Networks (CNNs) are primarily used for processin
+
+[08/50] Q: How do LSTM networks address the vanishing gradient problem?
+       A: LSTM networks address the vanishing gradient problem by using gating mechanisms (the input gate, for
+
+[09/50] Q: What activation functions are commonly used in neural networ
+       A: Based on the provided context, the commonly used activation functions are ReLU (Rectified Linear Uni
+
+[10/50] Q: What is the role of pooling layers in CNNs?
+       A: Based on the provided context, the roles of pooling layers in CNNs are:
+
+* To perform spatial downsa
+
+[11/50] Q: What is the transformer architecture?
+       A: Based on the provided context, the transformer architecture is a deep learning architecture that rev
+
+[12/50] Q: What are word embeddings?
+       A: Based on the provided context, word embeddings are dense vector representations of words that captur
+
+[13/50] Q: What is transfer learning in NLP?
+       A: Based on the provided context, transfer learning in NLP means pre-training large models on massive c
+
+[14/50] Q: How does BERT handle language understanding?
+       A: Based on the provided context, BERT handles language understanding by using bidirectional transforme
+
+[15/50] Q: What is self-attention in transformers?
+       A: Based on the provided context, self-attention is the core mechanism that gives transformers their po
+
+[16/50] Q: What is GPT and how is it trained?
+       A: Based on the provided context:
+
+**What is GPT:**
+GPT (Generative Pre-trained Transformer) is a famil
+
+[17/50] Q: What is instruction tuning?
+       A: Based on the provided context, instruction tuning is a supervised fine-tuning technique used to make
+
+[18/50] Q: What is RLHF?
+       A: Based on the provided context, Reinforcement Learning from Human Feedback (RLHF) is a technique used
+
+[19/50] Q: What is chain-of-thought prompting?
+       A: Based on the provided context, chain-of-thought prompting is a technique that improves Large Languag
+
+[20/50] Q: What is the context length of GPT-4?
+       A: Based on the provided context, GPT-4 supports up to 128K tokens of context.
+
+[21/50] Q: What is Retrieval-Augmented Generation?
+       A: Retrieval-Augmented Generation (RAG) is an approach that augments language models with external know
+
+[22/50] Q: What are the main components of a RAG pipeline?
+       A: Based on the provided context, the main components of a RAG pipeline are:
+
+1. A **retriever** that s
+
+[23/50] Q: What is dense retrieval?
+       A: Based on the provided context, dense retrieval is a neural approach to document retrieval that outpe
+
+[24/50] Q: Why is chunking strategy important in RAG?
+       A: Based on the provided context, the chunking strategy is important because it significantly impacts t
+
+[25/50] Q: What advanced RAG techniques exist beyond basic retrieval?
+       A: Based on the provided context, the advanced RAG techniques that exist beyond basic retrieval are:
+
+*
+
+[26/50] Q: What are vector databases used for?
+       A: Based on the provided context, vector databases are used for:
+
+1. Managing and querying high-dimensi
+
+[27/50] Q: What is FAISS?
+       A: Based on the provided context, FAISS (Facebook AI Similarity Search) is a widely used library for ef
+
+[28/50] Q: How do text embeddings capture semantic meaning?
+       A: Based on the provided context, text embeddings capture semantic meaning by converting text into nume
+
+[29/50] Q: What is HNSW?
+       A: Based on the provided context, HNSW (Hierarchical Navigable Small World) is a graph-based algorithm 
+
+[30/50] Q: What is hybrid search in vector databases?
+       A: Based on the provided context, hybrid search combines the strengths of both neural and keyword-based
+
+[31/50] Q: What is LangChain?
+       A: Based on the provided context, LangChain is an open-source framework that simplifies building applic
+
+[32/50] Q: What is LangChain Expression Language (LCEL)?
+       A: Based on the provided context, LangChain Expression Language (LCEL) is a declarative syntax and way 
+
+[33/50] Q: What is LangGraph?
+       A: Based on the provided context, LangGraph is an extension of LangChain used for building stateful, mu
+
+[34/50] Q: What memory types does LangChain support?
+       A: Based on the provided context, LangChain supports the following memory types:
+
+* ConversationBufferM
+
+[35/50] Q: What are LangChain retrievers?
+       A: Based on the provided context, LangChain retrievers are components that fetch relevant documents fro
+
+[36/50] Q: What is LangSmith?
+       A: Based on the provided context, LangSmith is a tool that enables comprehensive monitoring of LLM (Lar
+
+[37/50] Q: What information do LangSmith traces capture?
+       A: Based on the provided context, LangSmith traces capture inputs, outputs, latency, token usage, and e
+
+[38/50] Q: What is the LangSmith Prompt Hub?
+       A: Based on the provided context, the LangSmith Prompt Hub is a centralized repository for managing, st
+
+[39/50] Q: How does LangSmith help monitor production LLM applications?
+       A: Based on the provided context, LangSmith helps monitor production LLM applications by providing:
+
+* 
+
+[40/50] Q: What are LangSmith datasets used for?
+       A: Based on the provided context, LangSmith datasets are used for systematic evaluation using example i
+
+[41/50] Q: What is RAGAS?
+       A: Based on the provided context, RAGAS (Retrieval Augmented Generation Assessment) is an open-source f
+
+[42/50] Q: How does RAGAS compute faithfulness?
+       A: Based on the provided context, RAGAS computes faithfulness by:
+
+1. Extracting claims (or decomposing
+
+[43/50] Q: What is answer relevancy in RAGAS?
+       A: Based on the provided context, answer relevancy in RAGAS measures how well the generated answer addr
+
+[44/50] Q: What is context recall in RAGAS?
+       A: Based on the provided context, context recall in RAGAS measures how well the retrieved context cover
+
+[45/50] Q: What inputs does RAGAS evaluation require?
+       A: Based on the provided context, RAGAS evaluation requires the following inputs:
+
+* User queries (`use
+
+[46/50] Q: What is Guardrails AI?
+       A: Based on the provided context, Guardrails AI is a framework for adding safety and validation layers 
+
+[47/50] Q: What is PII and why is it important to detect in LLM respons
+       A: Based on the provided context:
+
+PII stands for **Personally Identifiable Information**. It includes 
+
+[48/50] Q: What does structured output validation ensure?
+       A: Based on the provided context, structured output validation ensures that LLM (Large Language Model) 
+
+[49/50] Q: What is Constitutional AI?
+       A: Constitutional AI is an approach to aligning language models with ethical principles. It is a techni
+
+[50/50] Q: What are common AI safety concerns with LLMs?
+       A: Based on the provided context, the common AI safety concerns with LLMs are:
+
+* Hallucination
+* Toxic
+
+
+✅ 50/50 traces đã gửi lên LangSmith project 'day22-lab'
+   Mở https://smith.langchain.com để xem traces.

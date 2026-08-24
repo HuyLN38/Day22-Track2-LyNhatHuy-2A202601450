@@ -1,5 +1,33 @@
 # Chào mừng các bạn đến với Day 22: LangSmith + Prompt Versioning
 
+---
+
+## 📌 Thông tin nộp bài
+
+| Mục | Giá trị |
+|-----|---------|
+| **Họ và tên** | Lý Nhật Huy |
+| **Mã sinh viên** | 2A202601450 |
+| **LLM Provider** | Google Gemini (`gemini-3.5-flash-lite`) + embeddings `gemini-embedding-001` |
+| **LangSmith project** | `day22-lab` |
+| **URL LangSmith project** | https://smith.langchain.com/o/6d62fa0e-c91b-4733-abfc-4b151614110d/projects/p/adaaab52-3648-477b-a7bd-f64c4b19acbd |
+| **Prompt Hub — V1** | https://smith.langchain.com/prompts/lynhathuy-rag-prompt-v1 |
+| **Prompt Hub — V2** | https://smith.langchain.com/prompts/lynhathuy-rag-prompt-v2 |
+
+Xem [`evidence/README.md`](evidence/README.md) để biết chi tiết từng tệp bằng chứng
+và phần phân tích so sánh V1 với V2.
+
+### Kiểm tra nhanh bằng chứng trên LangSmith
+
+```bash
+cd src && python verify_langsmith.py
+```
+
+Lệnh này gọi LangSmith API để đếm số traces theo từng bước, kiểm tra A/B routing
+và liệt kê prompt trên Hub — không cần mở trình duyệt.
+
+---
+
 ## Tổng quan
 
 Trong lab này, bạn sẽ xây dựng một hệ thống hỏi đáp hoàn chỉnh tích hợp nhiều công nghệ AI hiện đại:
