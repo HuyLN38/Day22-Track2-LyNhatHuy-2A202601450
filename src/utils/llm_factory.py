@@ -8,15 +8,19 @@ Cách dùng:
     embeddings = get_embeddings()     # dùng PROVIDER từ .env
 
     llm_gemini = get_llm("gemini")    # chỉ định provider cụ thể
+
+Ghi chú: với provider free tier (Gemini), factory tự gắn rate limiter cho LLM và
+bọc Embeddings bằng ThrottledEmbeddings (batch + backoff + cache) để không bị 429.
 """
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
+from utils.rate_limit import make_rate_limiter, ThrottledEmbeddings
 
 
-def get_llm(provider: str = None, temperature: float = 0.0):
+def get_llm(provider: str = None, temperature: float = 0.0, api_key: str = None):
     """
     Trả về BaseChatModel tương ứng với provider được chọn.
 
@@ -24,6 +28,8 @@ def get_llm(provider: str = None, temperature: float = 0.0):
         provider    : "openai" | "gemini" | "anthropic" | "ollama" | "openrouter"
                       Mặc định: đọc PROVIDER từ .env (config.PROVIDER)
         temperature : độ ngẫu nhiên (0.0 = tất định, 1.0 = sáng tạo)
+        api_key     : ghi đè API key mặc định (dùng để tách quota giữa
+                      LLM sinh câu trả lời và LLM đánh giá của RAGAS)
 
     Returns:
         BaseChatModel instance sẵn sàng sử dụng
@@ -49,8 +55,11 @@ def get_llm(provider: str = None, temperature: float = 0.0):
         from langchain_google_genai import ChatGoogleGenerativeAI
         return ChatGoogleGenerativeAI(
             model=config.GEMINI_MODEL,
-            google_api_key=config.GOOGLE_API_KEY,
+            google_api_key=api_key or config.GOOGLE_API_KEY,
             temperature=temperature,
+            max_retries=6,
+            # Free tier ~15 req/phút → giữ dưới ngưỡng để tránh 429
+            rate_limiter=make_rate_limiter(config.LLM_REQUESTS_PER_MINUTE),
         )
 
     elif provider == "anthropic":
@@ -86,7 +95,7 @@ def get_llm(provider: str = None, temperature: float = 0.0):
         )
 
 
-def get_embeddings(provider: str = None):
+def get_embeddings(provider: str = None, api_key: str = None):
     """
     Trả về Embeddings instance tương ứng với provider được chọn.
 
@@ -117,9 +126,15 @@ def get_embeddings(provider: str = None):
 
     elif provider == "gemini":
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
-        return GoogleGenerativeAIEmbeddings(
-            model=config.GEMINI_EMBEDDING_MODEL,
-            google_api_key=config.GOOGLE_API_KEY,
+        # Ưu tiên: EMBEDDING_API_KEY > api_key truyền vào > GOOGLE_API_KEY
+        emb_key = config.EMBEDDING_API_KEY or api_key or config.GOOGLE_API_KEY
+        return ThrottledEmbeddings(
+            GoogleGenerativeAIEmbeddings(
+                model=config.GEMINI_EMBEDDING_MODEL,
+                google_api_key=emb_key,
+            ),
+            requests_per_minute=config.EMB_REQUESTS_PER_MINUTE,
+            model_tag=config.GEMINI_EMBEDDING_MODEL,
         )
 
     elif provider == "anthropic":

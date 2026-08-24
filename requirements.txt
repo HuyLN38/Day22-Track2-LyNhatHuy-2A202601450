@@ -1,17 +1,19 @@
 # ── LangChain core ────────────────────────────────────────────────
-langchain>=0.3.0
-langchain-core>=0.3.0
-langchain-community>=0.3.0
-langchain-text-splitters>=0.3.0
+# ⚠️ Ghim vào nhánh 0.3.x: RAGAS 0.4.x import langchain_community.chat_models.vertexai,
+#    module này đã bị xoá trong langchain-community 0.4+ (LangChain 1.x) → ImportError.
+langchain>=0.3.0,<0.4
+langchain-core>=0.3.0,<0.4
+langchain-community>=0.3.0,<0.4
+langchain-text-splitters>=0.3.0,<0.4
 
 # ── LLM Providers (cài tất cả để hỗ trợ đa provider) ─────────────
-langchain-openai>=0.3.0          # OpenAI + OpenRouter
-langchain-anthropic>=0.1.0       # Anthropic Claude
-langchain-google-genai>=1.0.0    # Google Gemini
-langchain-ollama>=0.1.0          # Ollama (local)
+langchain-openai>=0.3.0,<0.4          # OpenAI + OpenRouter
+langchain-anthropic>=0.3.0,<0.4       # Anthropic Claude
+langchain-google-genai>=2.0.0,<3.0    # Google Gemini
+langchain-ollama>=0.2.0,<0.3          # Ollama (local)
 
 # ── LangSmith ─────────────────────────────────────────────────────
-langsmith>=0.2.0
+langsmith>=0.2.0,<0.5
 
 # ── Vector store ──────────────────────────────────────────────────
 faiss-cpu>=1.7.0
@@ -28,3 +30,4 @@ guardrails-ai>=0.5.0
 python-dotenv>=1.0.0
 openai>=1.0.0                    # OpenAI SDK (used by langchain-openai)
 tiktoken>=0.5.0                  # token counting
+pillow>=10.0.0                   # render log terminal → PNG cho evidence

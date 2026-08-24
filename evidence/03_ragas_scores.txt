@@ -1,0 +1,37 @@
+====================================================================
+  Day 22 — Bước 3: RAGAS Evaluation
+  Lý Nhật Huy — 2A202601450
+  50 QA pairs × 2 prompt version × 4 metrics  |  provider: gemini
+====================================================================
+
+📊 Kết quả RAGAS — Prompt V1:
+  faithfulness                  : 0.9653 ⭐
+  answer_relevancy              : 0.9712
+  context_recall                : 0.9800
+  context_precision             : 0.9000
+
+📊 Kết quả RAGAS — Prompt V2:
+  faithfulness                  : 0.9854 ⭐
+  answer_relevancy              : 0.9711
+  context_recall                : 0.9800
+  context_precision             : 0.8967
+
+====================================================================
+  Metric                                V1        V2  Winner
+====================================================================
+  faithfulness                      0.9653    0.9854  ← V2
+  answer_relevancy                  0.9712    0.9711  ≈ tương đương
+  context_recall                    0.9800    0.9800  ≈ tương đương
+  context_precision                 0.9000    0.8967  ≈ tương đương
+====================================================================
+
+✅ Đạt mục tiêu: faithfulness = 0.9854 ≥ 0.8
+✅ Điểm thưởng: faithfulness ≥ 0.9 ở CẢ HAI version
+
+🧠 Phân tích:
+   V2 (structured expert) tốt hơn rõ rệt ở: faithfulness (faithfulness 0.9653 → 0.9854). Lý
+   do: prompt V2 bắt mô hình liệt kê fact có trong context trước khi viết, và cấm suy đoán
+   ngoài context, nên hầu như mọi mệnh đề đều truy vết được về context → faithfulness cao
+   hơn. context_recall và context_precision gần như bằng nhau ở cả 2 version vì chúng chỉ
+   phụ thuộc vào retriever (cùng FAISS index, cùng k=3) chứ không phụ thuộc vào prompt —
+   chênh lệch còn lại chỉ là nhiễu của LLM-judge.

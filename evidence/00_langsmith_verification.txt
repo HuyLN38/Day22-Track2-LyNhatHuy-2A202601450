@@ -1,0 +1,60 @@
+✅ Config OK  |  Provider: GEMINI  |  Project: day22-lab
+==================================================================
+  Kiểm tra LangSmith — project 'day22-lab'
+==================================================================
+
+📊 Tổng số traces (root runs): 251
+
+   Theo tên trace:
+     ab-rag-query           : 200
+     rag-query              : 50
+     connectivity-check     : 1
+
+   Theo tag:
+     ab-test                : 200
+     step2                  : 200
+     prompt-v2              : 124
+     prompt-v1              : 76
+     rag                    : 50
+     step1                  : 50
+     setup                  : 1
+
+   Bước 1 (tag 'step1') : 50 traces  ✅ đạt ≥ 50
+   Bước 2 (tag 'step2') : 200 traces  ✅ đạt ≥ 50
+   Tổng Bước 1 + 2      : 250 traces  ✅ đạt ≥ 100
+
+   A/B routing: prompt-v1 = 76 | prompt-v2 = 124  ✅ cả 2 version đều nhận câu hỏi
+
+📝 Prompt trên Prompt Hub (của workspace này):
+     • lynhathuy-rag-prompt-v2  (commits: 1, cập nhật: 2026-08-24 23:47)
+       https://smith.langchain.com/prompts/lynhathuy-rag-prompt-v2
+     • lynhathuy-rag-prompt-v1  (commits: 1, cập nhật: 2026-08-24 23:47)
+       https://smith.langchain.com/prompts/lynhathuy-rag-prompt-v1
+   Tổng: 2 prompt ✅ có ≥ 2 version
+
+🔍 Kiểm tra nội dung trace (tiêu chí 1.4):
+
+   ── Trace mẫu: rag-query (01a035e8-83b8-7272-94e0-02de17deebd8) ──
+   Input   : {'question': 'What are common AI safety concerns with LLMs?'}
+   Output  : {'output': 'Based on the provided context, the common AI safety concerns with LLMs are:\n\n* Hallucination\n* Toxicity\n* Bias\n* PII leakage\n* Jailbreaking at
+   Tags    : ['rag', 'step1']
+   Metadata: {'revision_id': 'cd8c782-dirty'}
+   Spans   : 10 span — {'parser': 1, 'llm': 1, 'prompt': 1, 'chain': 6, 'retriever': 1}
+   ✅ Có span retriever: 3 document được truy xuất
+      Context[0]: LLM safety is a rapidly evolving area addressing risks associated with deploying large language models. Common...
+   ✅ Có span LLM (chứa câu trả lời của model)
+
+   ── Trace mẫu: ab-rag-query (01a03630-e0be-7641-ac23-0d179194ecbd) ──
+   Input   : {'question': 'What are common AI safety concerns with LLMs?', 'version': 'v2'}
+   Output  : {'answer': 'Based on the provided context, the common AI safety concerns associated with large language models include hallucination, toxicity, bias, PII leakag
+   Tags    : ['prompt-v2', 'ab-test', 'step2']
+   Metadata: {'prompt_name': 'lynhathuy-rag-prompt-v2', 'prompt_version': 'v2', 'request_id': 'req-0049', 'revision_id': 'cd8c782-dirty'}
+   Spans   : 6 span — {'parser': 1, 'llm': 1, 'prompt': 1, 'chain': 2, 'retriever': 1}
+   ✅ Có span retriever: 3 document được truy xuất
+      Context[0]: LLM safety is a rapidly evolving area addressing risks associated with deploying large language models. Common...
+   ✅ Có span LLM (chứa câu trả lời của model)
+
+==================================================================
+  URL project để chụp màn hình / nộp bài:
+  https://smith.langchain.com/o/6d62fa0e-c91b-4733-abfc-4b151614110d/projects/p/adaaab52-3648-477b-a7bd-f64c4b19acbd
+==================================================================
